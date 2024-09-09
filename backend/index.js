@@ -41,12 +41,6 @@ app.get("/api/upload", (req, res) => {
   res.send(result);
 });
 
-// app.get("/api/test", ClerkExpressRequireAuth(), (req, res) => {
-//   const userId = req.auth.userId;
-//   console.log(userId);
-//   res.send("Success!");
-// });
-
 app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
   const { text } = req.body;
@@ -100,13 +94,14 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
 });
 
 app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
+  console.log("Auth object:", req.auth);
   const userId = req.auth.userId;
 
   try {
     const userChats = await UserChats.find({ userId });
 
     if (!userChats.length) {
-      return res.status(200).send([]); 
+      return res.status(200).send([]);
     }
 
     res.status(200).send(userChats[0].chats);

@@ -42,6 +42,7 @@ const NewPrompt = ({ data }) => {
   }, [data, question, answer, img.dbData]);
 
   const queryClient = useQueryClient();
+
   const { getToken } = useAuth();
 
   const mutation = useMutation({

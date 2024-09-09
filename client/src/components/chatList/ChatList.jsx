@@ -8,12 +8,12 @@ const ChatList = () => {
   const { getToken } = useAuth();
 
   const fetchUserChats = async () => {
-    const token = await getToken(); // Fetch the token from Clerk
+    const token = await getToken();
 
     return fetch(`${import.meta.env.VITE_API_URL}/api/userchats`, {
       credentials: "include",
       headers: {
-        Authorization: `Bearer ${token}`, // Include the Clerk token in the Authorization header
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then((res) => res.json());
